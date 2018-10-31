@@ -1,9 +1,10 @@
 pipeline {
     agent any
     stages{
-        stages('build'){
+        stage('build'){
             steps{
                 bat 'mvn clean package'
+                bat "docker build . -t tomcatwebapp:${env.BUILD_ID}"
             }
         }
 
